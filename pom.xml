@@ -35,6 +35,24 @@
   <name>Keycloak Discourse</name>
   <description>Integration between keycloak and discourse.</description>
 
+  <licenses>
+    <license>
+      <name>Affero General Public License, version 3</name>
+      <url>https://www.gnu.org/licenses/agpl-3.0.txt</url>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git:git://github.com/Code-House/keycloak-discourse.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/Code-House/keycloak-discourse.git</developerConnection>
+    <url>https://github.com/Code-House/keycloak-discourse</url>
+  </scm>
+
+  <issueManagement>
+    <system>github</system>
+    <url>http://github.com/Code-House/keycloak-discourse/issues</url>
+  </issueManagement>
+
   <modules>
     <module>parent</module>
     <module>extension</module>
