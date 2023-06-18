@@ -29,7 +29,7 @@
 
   <groupId>org.code-house.keycloak</groupId>
   <artifactId>discourse</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Keycloak Discourse</name>
