@@ -56,8 +56,6 @@ import org.slf4j.LoggerFactory;
 public class DiscourseIdentityProvider extends AbstractIdentityProvider<DiscourseIdentityProviderConfig>
   implements SocialIdentityProvider<DiscourseIdentityProviderConfig> {
 
-  private final Logger logger = LoggerFactory.getLogger(DiscourseIdentityProvider.class);
-
   public DiscourseIdentityProvider(KeycloakSession session, DiscourseIdentityProviderConfig config) {
     super(session, config);
   }
@@ -71,8 +69,8 @@ public class DiscourseIdentityProvider extends AbstractIdentityProvider<Discours
   public Response performLogin(AuthenticationRequest request) {
     try {
       String nonce = request.getState().getEncoded();
-      String payload = "nonce=" + nonce + "&return_sso_url=" + request.getRedirectUri() + "&location=";
-      String base64payload = new String(Base64.getEncoder().encode(payload.getBytes(StandardCharsets.UTF_8)), StandardCharsets.UTF_8);
+      String payload = "nonce=" + nonce + "&return_sso_url=" + request.getRedirectUri();
+      String base64payload = new String(Base64.getEncoder().encode(payload.getBytes()));
 
       String hexSignature = hmac(base64payload, getConfig().getSsoSecret());
       String encodedPayload = URLEncoder.encode(base64payload, StandardCharsets.UTF_8);
@@ -111,7 +109,8 @@ public class DiscourseIdentityProvider extends AbstractIdentityProvider<Discours
     }
 
     @GET
-    public Response authResponse(@QueryParam("sso") String sso, @QueryParam("sig") String signature) throws Exception {
+    public Response authResponse(@QueryParam("sso") String sso, @QueryParam("sig") String signature)
+      throws Exception {
       Map<String, String> data = parse(getConfig().getSsoSecret(), sso, signature);
       String state = data.get("nonce");
 
