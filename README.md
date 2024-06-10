@@ -5,12 +5,15 @@ Provider itself bridge information from Discourse powered forums.
 Discourse as a tool is able to authenticate using popular OAuth or OpenID Connect providers.
 However, it does not offer a OpenID Connect authorization endpoint for third parties.
 
+![Configuration screen](docs/img/discourse-identity-provider.png)
+
 ## Compatibility
 
-Authorization protocol between Discourse and Keycloak is so called "Discourse Connect".
+Authorization protocol between Discourse and Keycloak is so-called "Discourse Connect".
 
-This extension is currently compatible with Keycloak 17.x-20.x - and it does offer admin ui fragment.
-You can use it with later versions of Keycloak, however then you have to configure it without UI.
+This v1 of extension was compatible with Keycloak 17.x-20.x, when using old admin console.
+The v2 version of this identity provider aims compatibility with Keycloak in versions above 22.
+The Keycloak 21 is unsupported due to missing old console and sufficient configuration mechanisms.
 
 ## Implementation details
 

@@ -33,6 +33,6 @@ services:
       #HTTP_PROXY: http://192.168.2.106:8888
     ports:
       - 8080:8080
-      - 5006:5006
+      - 0.0.0.0:5006:5006
     depends_on:
       - postgres

@@ -17,13 +17,17 @@
  */
 package org.code_house.keycloak.discourse.idp;
 
+import java.util.List;
 import org.keycloak.broker.provider.AbstractIdentityProviderFactory;
 import org.keycloak.broker.social.SocialIdentityProviderFactory;
 import org.keycloak.models.IdentityProviderModel;
 import org.keycloak.models.KeycloakSession;
+import org.keycloak.provider.ConfiguredProvider;
+import org.keycloak.provider.ProviderConfigProperty;
+import org.keycloak.provider.ProviderConfigurationBuilder;
 
 public class DiscourseIdentityProviderFactory extends AbstractIdentityProviderFactory<DiscourseIdentityProvider>
-  implements SocialIdentityProviderFactory<DiscourseIdentityProvider> {
+  implements SocialIdentityProviderFactory<DiscourseIdentityProvider>, ConfiguredProvider {
 
   @Override
   public String getName() {
@@ -33,6 +37,18 @@ public class DiscourseIdentityProviderFactory extends AbstractIdentityProviderFa
   @Override
   public DiscourseIdentityProvider create(KeycloakSession session, IdentityProviderModel model) {
     return new DiscourseIdentityProvider(session, new DiscourseIdentityProviderConfig(model));
+  }
+
+  @Override
+  public List<ProviderConfigProperty> getConfigProperties() {
+    return ProviderConfigurationBuilder.create()
+        .property()
+          .name("discourseAddress")
+          .label("Discourse root URL")
+          .helpText("Address where forum is running, please provide link to forum homepage")
+          .type(ProviderConfigProperty.STRING_TYPE)
+        .add()
+      .build();
   }
 
   @Override
